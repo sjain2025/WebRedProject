@@ -1,0 +1,122 @@
+[
+  {
+    "username": "Soham",
+    "points": 50,
+    "player": "A.J. Brown",
+    "time": 2.711,
+    "difficulty": "EASY",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 50,
+    "player": "Davante Adams",
+    "time": 4.242,
+    "difficulty": "EASY",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "David Njoku",
+    "time": 5.002,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "D.K. Metcalf",
+    "time": 7.194,
+    "difficulty": "EASY",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "Jared Goff",
+    "time": 9.487,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "Tyler Lockett",
+    "time": 8.211,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "Patrick Mahomes",
+    "time": 7.476,
+    "difficulty": "EASY",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 43,
+    "player": "Chuba Hubbard",
+    "time": 14.788,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 43,
+    "player": "Andrew Ogletree",
+    "time": 14.733,
+    "difficulty": "HARD",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 50,
+    "player": "Justin Herbert",
+    "time": 3.019,
+    "difficulty": "EASY",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 50,
+    "player": "George Pickens",
+    "time": 3.733,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 38,
+    "player": "Tutu Atwell",
+    "time": 10.341,
+    "difficulty": "MEDIUM",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 30,
+    "player": "Rashod Bateman",
+    "time": 22.608,
+    "difficulty": "HARD",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 47,
+    "player": "Pat Freiermuth",
+    "time": 8.918,
+    "difficulty": "HARD",
+    "date": "December 19, 2023"
+  },
+  {
+    "username": "Soham",
+    "points": 18,
+    "player": "Erik Ezukanma",
+    "time": 15.985,
+    "difficulty": "IMPOSSIBLE",
+    "date": "December 19, 2023"
+  }
+]

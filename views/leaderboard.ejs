@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        h1 {
+            font-family: sans-serif;
+            font-size: 48px;
+            text-align: center;
+            margin-top: 4%;
+        }
+        .difficulty-bar {
+            margin-left: 16px;
+            margin-top: 4%;
+            display: flex;
+        }
+        .difficulty-button {
+            flex: 1;
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid black;
+            margin-left: 5px;
+            text-align: center;
+            font-weight: bold;
+            max-width: 22.5%;
+        }
+        .difficulty-button:hover {
+            cursor: pointer;
+            opacity: 80%;
+        }
+        .easy {
+            background-color: #75e975;
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+        .medium {
+            background-color: #ffff00;
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+        .hard {
+            background-color: #f5af2e;
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+        .impossible {
+            background-color: #f65757;
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+        .content {
+            text-align: center;
+            margin: 20px;
+        }
+        .page {
+            display: none;
+            background-color: #d0e8f7;
+            margin-top: 2%;
+        }
+        .page.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <div class="difficulty-bar">
+        <div class="difficulty-button easy" onclick="showPage('easy')">Easy</div>
+        <div class="difficulty-button medium" onclick="showPage('medium')">Medium</div>
+        <div class="difficulty-button hard" onclick="showPage('hard')">Hard</div>
+        <div class="difficulty-button impossible" onclick="showPage('impossible')">Impossible</div>
+    </div>
+    <div class="content">
+        <div class="page easy active">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Points</th>
+                        <th>Time</th>
+                        <th>Player</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < easyData.length; i++) { %>
+                        <tr>
+                            <td><%= easyData[i]["username"] %></td>
+                            <td><%= easyData[i]["points"] %></td>
+                            <td><%= easyData[i]["time"] %></td>
+                            <td><%= easyData[i]["player"] %></td>
+                            <td><%= easyData[i]["date"] %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="page medium">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Points</th>
+                        <th>Time</th>
+                        <th>Player</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < mediumData.length; i++) { %>
+                        <tr>
+                            <td><%= mediumData[i]["username"] %></td>
+                            <td><%= mediumData[i]["points"] %></td>
+                            <td><%= mediumData[i]["time"] %></td>
+                            <td><%= mediumData[i]["player"] %></td>
+                            <td><%= mediumData[i]["date"] %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="page hard">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Points</th>
+                        <th>Time</th>
+                        <th>Player</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < hardData.length; i++) { %>
+                        <tr>
+                            <td><%= hardData[i]["username"] %></td>
+                            <td><%= hardData[i]["points"] %></td>
+                            <td><%= hardData[i]["time"] %></td>
+                            <td><%= hardData[i]["player"] %></td>
+                            <td><%= hardData[i]["date"] %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="page impossible">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Points</th>
+                        <th>Time</th>
+                        <th>Player</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < impossibleData.length; i++) { %>
+                        <tr>
+                            <td><%= impossibleData[i]["username"] %></td>
+                            <td><%= impossibleData[i]["points"] %></td>
+                            <td><%= impossibleData[i]["time"] %></td>
+                            <td><%= impossibleData[i]["player"] %></td>
+                            <td><%= impossibleData[i]["date"] %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function showPage(difficulty) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelector('.page.' + difficulty).classList.add('active');
+        }
+    </script>
+</body>
+</html>

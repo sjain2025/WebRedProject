@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impossible</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <button id="showImgButton">Show Image</button><br><br>
+    <img id="img" style="display: none;"><br><br>
+    <b><p id="imgErrorText"></p></b>
+    <b>POSITION:</b> <%= results[number]['Position'] %><br>
+    <b>TEAM:</b> <%= results[number]['Team'] %><br>
+    <b>RANK:</b> <%= results[number]['OverallRank'] %><br>
+    <b>SEASON FANTASY POINTS:</b> <%= results[number]['PPR'] %><br>
+    <br><br>
+    <input type="text" autocomplete="off" id="playerName">
+    <button id="checkNameButton">Check Name</button>
+    <button id="giveUpButton">Give Up</button>
+    <b><p id="outputText"></p></b>
+    <b><p id="pointsText"></p></b>
+    <b><p id="timeText"></p></b>
+    <br><br><br>
+    <button id="playAgainButton">Play Again</button>
+    <script>
+        var startTime;
+        var showImgButton = document.getElementById('showImgButton');
+        var img = document.getElementById('img');
+        var imgErrorText = document.getElementById('imgErrorText');
+        var playerNameInput = document.getElementById('playerName');
+        var checkNameButton = document.getElementById('checkNameButton');
+        var giveUpButton = document.getElementById('giveUpButton');
+        var outputText = document.getElementById('outputText');
+        var pointsText = document.getElementById('pointsText');
+        var timeText = document.getElementById('timeText');
+        var playAgainButton = document.getElementById('playAgainButton');
+        var points = 50;
+        var totalTime = 0.0;
+        var penalty = 0;
+        showImgButton.addEventListener('click', function() {
+            img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2023.jpg";
+            img.style.display = 'inline-block';
+            points -= 25;
+        });
+        img.onerror = function() {
+            img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2022.jpg";
+            img.onerror = function() {
+                img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2021.jpg";
+                img.onerror = function() {
+                    img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2020.jpg";
+                    img.onerror = function() {
+                        img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2019.jpg";
+                        img.onerror = function() {
+                            img.src = "https://www.pro-football-reference.com/req/20230307/images/headshots/<%= results[number]['ID'] %>_2018.jpg";
+                            img.onerror = function() {
+                                imgErrorText.textContent = "IMAGE NOT AVAILABLE";
+                                points += 25;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        function saveData(points, totalTime) {
+            var http = new XMLHttpRequest();
+            http.open('GET', `/saveData?username="<%= username %>"&points="${points}"&player="<%= results[number]["Player"] %>"&time="${totalTime}"&difficulty="IMPOSSIBLE"`, true);
+            http.send();
+        }
+        checkNameButton.addEventListener('click', function() {
+            var playerName = playerNameInput.value.trim();
+            var actualPlayerName1 = '<%= results[number]["Player"] %>';
+            var actualPlayerName2 = '<%= results[number]["Player"] %>'.split(' ')[1];            
+            if (playerName.toLowerCase() === actualPlayerName1.toLowerCase() || playerName.toLowerCase() === actualPlayerName2.toLowerCase()) {
+                outputText.textContent = `CORRECT!`;
+                timeText.textContent = `TIME: ${displayElapsedTime()}`;
+                playerNameInput.disabled = true;
+                checkNameButton.disabled = true;
+                giveUpButton.disabled = true;
+                if (startTime) {
+                    totalTime = displayElapsedTime();
+                    startTime = undefined;
+                    console.log(totalTime)
+                }
+                if (totalTime < 5) {
+                    penalty = 0;
+                } else if (totalTime < 10) {
+                    penalty = 3;
+                } else if (totalTime < 20) {
+                    penalty = 7;
+                } else if (totalTime < 30) {
+                    penalty = 10;
+                } else {
+                    penalty = 15;
+                }
+                points = Math.max(0, points - penalty);
+                pointsText.textContent = `POINTS: ${points}`;
+                saveData(points, totalTime);
+            } else {
+                outputText.textContent = "INCORRECT";
+                if (points >= 5)
+                    points -= 5;
+                else
+                    points = 0
+            }
+        });
+        giveUpButton.addEventListener('click', function() {
+            var actualPlayerName = '<%= results[number]["Player"] %>';
+            outputText.textContent = `The correct answer is: ${actualPlayerName}`;
+            pointsText.textContent = `POINTS: 0`;
+            playerNameInput.disabled = true;
+            checkNameButton.disabled = true;
+            giveUpButton.disabled = true;
+        });
+        playAgainButton.addEventListener('click', function() {
+            location.reload();
+        });
+        window.addEventListener('load', function() {
+            startTime = new Date().getTime();
+        });
+        function displayElapsedTime() {
+            var endTime = new Date().getTime();
+            return (endTime - startTime) / 1000;
+        }
+    </script>
+</body>
+</html>
